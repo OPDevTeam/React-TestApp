@@ -26,7 +26,9 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname,'public'),
     port: 3030,
-    publicPath: "/dist/"
-  },
+    publicPath: "/dist/",
+    proxy: {
+      '/api': 'http://localhost:3000'
+}  },
   plugins: [ new webpack.HotModuleReplacementPlugin() ]
 };
