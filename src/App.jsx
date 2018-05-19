@@ -10,11 +10,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      model: {
-        name: "Undefined",
-        id: 0,
-        components: []
-      },
+      model: undefined,
       autoUpdate: false
     }
 
@@ -25,10 +21,16 @@ class App extends React.Component {
 
   render() {
           //<UpdateButton update={() => this.updateData()} />
+      if(!this.state.model) {
+        return (
+          <h5>Model has not been created</h5>
+        );
+      }
       return(
         <div style={{margin: "10px"}}>
-          <h5>Model Name: {this.state.model.name}</h5>
-          <h5>Model Id: {this.state.model.id}</h5>
+          <h6>[{this.state.model.id}] Model Name: {this.state.model.name}</h6>
+          <h6>Created On: {this.state.model.createdOn}</h6>
+          <h6> Modified On: {this.state.model.modifiedOn}</h6>
           <AutoUpdateToggle checked={this.state.autoUpdate} toggle={() => this.toggleAutoUpdate()} />
 
           <ModelView width={800} height={800} model={this.state.model}/>
