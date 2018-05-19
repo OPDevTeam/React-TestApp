@@ -10,11 +10,11 @@ const ModelComponent = (props) => {
             {props.graphics.map(graphic => {
                     switch (graphic.type) {
                         case 0:
-                            return <Line {...graphic} />
+                            return <Line key={graphic.id} {...graphic} />
                         case 1:
-                            return <Circle {...graphic} />
+                            return <Circle key={graphic.id} {...graphic} />
                         case 2:
-                            return <Rectangle {...graphic} />
+                            return <Rectangle key={graphic.id} {...graphic} />
                     } 
                 })
             };

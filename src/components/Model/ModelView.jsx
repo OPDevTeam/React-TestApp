@@ -9,11 +9,9 @@ export default class ModelView extends React.Component {
 
         return(
             <div style={{margin: "10px"}}>
-            <h5>Model Name: {this.props.model.name}</h5>
-            <h5>Model Id: {this.props.model.id}</h5>
             <svg width={width} height={height}>
                 <Rectangle start={{x:0, y:0}} end={{x:width, y:height}} y2={height} border="black" fill="white" />
-                {this.props.model.components.map(component => <ModelComponent {...component} />)}
+                {this.props.model.components.map(component => <ModelComponent key={component.id} {...component} />)}
             </svg>
             </div>
         );
