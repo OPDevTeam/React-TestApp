@@ -3,8 +3,8 @@ import UpdateButton from './components/UpdateButton';
 import ModelView from './components/Model/ModelView';
 import SampleData from './SampleData';
 import AutoUpdateToggle from './components/AutoUpdateToggle';
-import AddPipeButton from './components/AddPipe';
-import AddValveButton from './components/AddValve';
+import {AddPipeForm} from './components/AddPipe';
+import {AddGateValveForm} from './components/AddValve';
 
 class App extends React.Component {
 
@@ -36,8 +36,8 @@ class App extends React.Component {
           <h6>Created On: {this.state.model.createdOn}</h6>
           <h6> Modified On: {this.state.model.modifiedOn}</h6>
           <AutoUpdateToggle checked={this.state.autoUpdate} toggle={() => this.toggleAutoUpdate()} />
-          <AddPipeButton />
-          <AddValveButton />
+          <AddPipeForm />
+          <AddGateValveForm />
 
           <ModelView width={this.state.viewWidth} height={this.state.viewHeight} model={this.state.model}/>
         </div>

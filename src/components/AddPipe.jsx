@@ -1,15 +1,48 @@
 import React from 'react';
 
 
-const AddPipeButton = (props) => {
+export class AddPipeForm extends React.Component {
 
-    const addPipe = () => {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tag: "P-1",
+            drawMethod: "Pipe",
+            x: 10,
+            y: 10,
+            len: 100,
+            od: 10
+        }
+    }
+
+    handleTagChanged = (event) => {
+        this.setState({tag: event.target.value});
+    }
+
+    handleXChanged = (event) => {
+        this.setState({x: Number(event.target.value)});
+    }
+
+    handleYChanged = (event) => {
+        this.setState({y: Number(event.target.value)});
+    }
+
+    handleLenChanged = (event) => {
+        this.setState({len: Number(event.target.value)});
+    }
+
+    handleODChanged = (event) => {
+        this.setState({od: Number(event.target.value)});
+    }
+
+    handleSubmit = (event) => {
+        event.preventDefault();
         let pipeData = 
             {
-                name : "P-102",
-                drawMethod : "Pipe",
-                props : {len : {value: 36, units: "IN"}, od: {value: 6, units: "IN"}},
-                origin : {x: 10, y: 100, z: 0, units: "IN"}
+                name : this.state.tag,
+                drawMethod : this.state.drawMethod,
+                props : {len : {value: this.state.len, units: "IN"}, od: {value: this.state.od, units: "IN"}},
+                origin : {x: this.state.x, y: this.state.y, z: 0, units: "IN"}
                 
             };
 
@@ -25,10 +58,33 @@ const AddPipeButton = (props) => {
 
     }
 
-    return(
-        <button onClick={addPipe}>Add Pipe</button>
-    );
+    render() {
+        return(
+            <form onSubmit={this.handleSubmit}> 
+                <label>
+                    tag:
+                    <input type="text" name="tag" value={this.state.tag} onChange={this.handleTagChanged} />
+                </label>
+                <label>
+                    x:
+                    <input type="number" name="x" value={this.state.x} onChange={this.handleXChanged} />
+                </label>
+                <label>
+                    y:
+                    <input type="number" name="y"  value={this.state.y} onChange={this.handleYChanged} />
+                </label>
+                <label>
+                    length:
+                    <input type="number" name="len" value={this.state.len}  onChange={this.handleLenChanged} />
+                </label>
+                <label>
+                    od:
+                    <input type="number" name="od" value={this.state.od}  onChange={this.handleODChanged} />
+                </label>
+                <input type="submit" value="Add Pipe" />
+            </form>
+        );
+    }
 }
 
-export default AddPipeButton;
 
