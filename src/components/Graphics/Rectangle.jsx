@@ -1,10 +1,14 @@
 import React from 'react';
 
+const TransformToView = (pt, origin, invertY, sf) => {
+  let x = pt.x * sf + origin.x;
+  let y = invertY ? origin.y - pt.y * sf : pt.y * sf + origin.y ;
+  return ({x: x, y: y})
+}
+
 const Rectangle = (props) => {
-  let startx = props.start.x * props.sf;
-  let starty = props.start.y * props.sf;
-  let endx = props.end.x * props.sf;
-  let endy = props.end.y * props.sf;
+  let start = TransformToView(props.start, props.vieworigin, props.invertyaxis, props.sf);
+  let end = TransformToView(props.end, props.vieworigin, props.invertyaxis, props.sf);;
 
 
 	let width = endx - startx;
